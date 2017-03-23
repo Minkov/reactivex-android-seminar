@@ -207,7 +207,7 @@ class MainActivity ... {
 
 <div style="text-align: center">
   <div style="width: 49%; display: inline-block;margin: 0; font-size: 0.8em">
-    <strong>[OkHttp](http://)</strong>
+    <strong>[OkHttp](http://square.github.io/okhttp/)</strong>
     <p style="font-size:0.7em">for creating HTTP requests</p>
     <pre><code>Request req = 
   new Request.Builder()
@@ -225,7 +225,7 @@ String json = res
 </code></pre>
   </div>
   <div style="width: 49%; display: inline-block;margin: 0; font-size: 0.8em">
-    <strong>[Gson](http://)</strong><p style="font-size:0.7em">for parsing the JSON to POJO</p>
+    <strong>[Gson](https://github.com/google/gson)</strong><p style="font-size:0.7em">for parsing the JSON to POJO</p>
     <pre><code>Gson gson = new Gson();
 
 // from JSON to POJO
@@ -236,7 +236,7 @@ Book[] books =
 String jsonBook = 
   gson.toJson(bookObject);
 
-//from array to JSON
+// from array to JSON
 String jsonBooksArray = 
   gson.toJson(booksArray);
 </code></pre>
