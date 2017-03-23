@@ -9,7 +9,7 @@
     <a href="http://academy.telerik.com" class="signature-link">http://academy.telerik.com</a>
 </div>
 
-<img src="./imgs/Android_Reactive.jpeg" style="position: absolute;top: 210px;left: 0;height: 250px;border: 1px solid white;border-radius: 5px;" />
+<!--<img src="./imgs/Android_Reactive.jpeg" style="position: absolute;top: 210px;left: 0;height: 250px;border: 1px solid white;border-radius: 5px;" showInPresentation="true" />-->
 <!-- section start -->
 
 # Table of Contents
