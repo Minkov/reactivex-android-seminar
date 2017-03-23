@@ -1,0 +1,372 @@
+::selection {
+  background: rgba(187,255,183,0.5);
+  color: #218214;
+}
+.reveal {
+  background: #000;
+  background-image: url("../../css/imgs/dark-bg.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.reveal .slides {
+  height: 100%;
+  font-size: 47px;
+}
+.reveal .slides sup {
+  font-size: 0.8em;
+}
+.reveal .slides a {
+  color: #77b300;
+}
+.reveal .slides strong {
+  font-weight: normal;
+  color: #6cfc55;
+}
+.reveal .slides blockquote {
+  font-weight: normal;
+  font-style: italics;
+  border: 1px solid #acffa8;
+  border-radius: 5px;
+  width: 85%;
+  background: rgba(255,255,255,0.2);
+  padding: 5px 15px;
+}
+.reveal .slides blockquote p {
+  margin: 0 auto;
+}
+.reveal .slides a {
+  text-decoration: underline;
+}
+.reveal .slides .hljs {
+  background: rgba(250,250,250,0.85);
+  border-radius: 15px;
+  padding: 15px;
+  color: #333;
+  max-height: 100%;
+}
+.reveal .slides section {
+  padding: 15px;
+  padding-top: 25px;
+  color: #ebffd2;
+  height: 100%;
+  background-image: url("../../css/imgs/logo.png");
+  background-repeat: no-repeat, no-repeat;
+  background-size: 300px;
+  text-align: left;
+  text-shadow: 3px 3px 10px #000;
+}
+.reveal .slides section li li {
+  font-size: 0.9em;
+}
+.reveal .slides section code {
+  color: #daedf2;
+  text-shadow: 3px 3px 3px #000;
+}
+.reveal .slides section pre code {
+  text-shadow: none;
+}
+.reveal .slides section section {
+  background-image: url("../../css/imgs/bg-dark.png");
+}
+.reveal .slides section h1,
+.reveal .slides section h2 {
+  color: #cf3;
+  text-shadow: 3px 3px 5px #000;
+  width: 85%;
+  margin-left: 15%;
+  text-transform: none;
+  text-align: right;
+}
+.reveal .slides section h1 {
+  font-size: 1.3em;
+  margin-bottom: 5px;
+}
+.reveal .slides section h2 {
+  color: #faf7c8;
+  font-size: 1.3em;
+  margin-top: 10px;
+}
+.reveal .slides .table-of-contents a {
+  color: #ebffd2;
+  text-decoration: none;
+}
+.reveal .slides .slide-title {
+  background-position: top left, bottom right;
+  background-repeat: no-repeat, no-repeat;
+}
+.reveal .slides .slide-title h1 {
+  width: 100%;
+  margin-top: 100px;
+  margin-left: 0;
+  font-size: 1.4em;
+}
+.reveal .slides .slide-title h2 {
+  margin-top: 25px;
+  margin-left: 20px;
+  font-size: 1.1em;
+  width: 100%;
+}
+.reveal .slides .slide-section {
+  text-align: center;
+}
+.reveal .slides .slide-section h1,
+.reveal .slides .slide-section h2 {
+  width: 100%;
+  text-align: center;
+  margin-left: 0;
+}
+.reveal .slides .slide-section h1 {
+  margin-top: 20%;
+  font-size: 1.7em;
+}
+.reveal .slides .slide-section h2 {
+  margin-top: 25px;
+  font-size: 1.1em;
+}
+.reveal .slides.slide-questions {
+  font-size: 1em;
+}
+.reveal .slides .slide-questions h1 {
+  text-align: right;
+}
+.reveal .slides .slide-questions h2 {
+  margin-top: 15%;
+  text-align: center;
+  font-size: 1.9em;
+}
+.reveal .slides .signature {
+  float: right;
+  position: fixed;
+  bottom: 70px;
+  text-align: left;
+}
+.reveal .slides .signature-course {
+  color: #739900;
+  font-size: 1.05em;
+  font-weight: bold;
+  line-height: 21px;
+}
+.reveal .slides .signature-initiative {
+  color: #f5ffd6;
+  font-size: 0.9em;
+  line-height: 25px;
+  padding-top: 10px;
+  margin-bottom: 0;
+}
+.reveal .slides .signature-link {
+  color: #739900;
+  font-size: 0.85em;
+  text-decoration: underline;
+  line-height: 10px;
+}
+.reveal .slides .balloon {
+  display: inline-block;
+  position: absolute;
+  padding: 5px 15px;
+  font-size: 25px;
+  border: 2px solid #f5ffe0;
+  border-radius: 15px;
+  background: #9f8471;
+}
+.reveal .slides .slide-image {
+  border: none;
+  background: none;
+  position: absolute;
+  box-shadow: none;
+}
+.reveal .slides .bubble {
+  display: inline-block;
+  position: absolute;
+  padding: 5px 15px;
+  font-size: 25px;
+  border: 2px solid #f5ffe0;
+  border-radius: 15px;
+  background: #9f8471;
+  display: inline-block;
+  position: relative;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+.reveal .slides .bubble-left:before,
+.reveal .slides .bubble-right:before,
+.reveal .slides .bubble-up:before,
+.reveal .slides .bubble-up-left:before,
+.reveal .slides .bubble-up-right:before,
+.reveal .slides .bubble-down: before,
+.reveal .slides .bubble-down-left:before,
+.reveal .slides .bubble-down-right:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.reveal .slides .bubble-left:before {
+  right: 100%;
+  border-top: 15px solid transparent;
+  border-right: 30px solid #f5ffe0;
+}
+.reveal .slides .bubble-right:before {
+  left: 100%;
+  top: 50%;
+  border-bottom: 15px solid transparent;
+  border-left: 30px solid #f5ffe0;
+}
+.reveal .slides .bubble-up:before,
+.reveal .slides .bubble-up-right:before {
+  left: 95%;
+  bottom: 100%;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid #f5ffe0;
+}
+.reveal .slides .bubble-up-left:before {
+  right: 96%;
+  bottom: 100%;
+  border-left: 15px solid transparent;
+  border-bottom: 30px solid #f5ffe0;
+}
+.reveal .slides .bubble-down:before,
+.reveal .slides .bubble-down-left:before {
+  right: 95%;
+  top: 100%;
+  border-left: 15px solid transparent;
+  border-top: 30px solid #f5ffe0;
+}
+.reveal .slides .bubble-down-right:before {
+  left: 96%;
+  top: 100%;
+  border-right: 15px solid transparent;
+  border-top: 30px solid #f5ffe0;
+}
+#loading {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30,30,30,0.9);
+  background-image: url("https://cdn.rawgit.com/TelerikAcademy/Common/master/revealjs-theme/css/imgs/gears.gif");
+  color: #fff;
+  background-repeat: no-repeat;
+  background-position: 50% 40%;
+  background-repeat: no-repeat;
+}
+#loading .loading-container {
+  position: absolute;
+  top: 35%;
+}
+#loading .text {
+  font-size: 1em;
+  line-height: 7em;
+  text-align: center;
+}
+#loading div {
+  height: 100%;
+  width: 100%;
+}
+.reveal .controls {
+  bottom: 50px;
+}
+.reveal .slide-number {
+  bottom: 55px;
+}
+.reveal .social-widget {
+  position: absolute;
+  bottom: 0;
+  padding-left: 15px;
+  padding-bottom: 18px;
+  padding-right: 15px;
+  background-color: rgba(200,200,200,0.4);
+  opacity: 0.3;
+  z-index: 100;
+  text-align: center;
+  border-radius: 5px 0 0 0;
+}
+.reveal .social-widget.mobile {
+  width: 100%;
+  padding-bottom: 5px;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.reveal .social-widget.left {
+  left: 0;
+  border-radius: 0 5px 0 0;
+}
+.reveal .social-widget.right {
+  right: 0;
+}
+.reveal .social-widget:hover {
+  opacity: 1;
+}
+.reveal .social-widget strong {
+  font-size: 0.5em;
+  margin-bottom: 5px;
+}
+.reveal .social-widget a {
+  margin-right: 5px;
+}
+.reveal .social-widget a:last-of-type {
+  margin-right: 0;
+}
+.reveal .social-widget img {
+  height: 30px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.reveal .social-widget img:first-of-type {
+  margin-top: 15px;
+}
+.reveal .social-widget img:hover {
+  opacity: 0.5;
+  box-shadow: 2px 3px 5px #fff;
+}
+.hidden .buttons {
+  display: none !important;
+}
+.reveal .social-widget.mobile {
+  display: none;
+}
+.home-btn {
+  z-index: 100;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding-bottom: 10%;
+  border-radius: 50%;
+  border: 2px solid #f5f5f5;
+  overflow: hidden;
+  background: #464646;
+  box-shadow: 0 0 3px #808080;
+  background-image: url("https://raw.githubusercontent.com/TelerikAcademy/Common/master/icons/home-icon.png");
+  background-position: 50% 50%;
+  background-size: 70%;
+  background-repeat: no-repeat;
+}
+.home-btn:hover {
+  background-color: #555;
+}
+.home-btn a {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+}
+@media (max-width: 640px) {
+  .reveal .social-widget.desk {
+    display: none;
+  }
+  .reveal .social-widget.mobile {
+    display: block;
+  }
+  #loading .loading-container {
+    top: 35%;
+  }
+  #loading .loading-container .text {
+    font-size: 0.8em;
+  }
+}

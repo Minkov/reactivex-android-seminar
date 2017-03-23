@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://localhost:8080/#/3/4 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>ReactiveX in Android</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="./ReactiveX in Android_files/reveal.css">
+    <link rel="stylesheet" href="./ReactiveX in Android_files/black.css" id="theme">
+    <link rel="stylesheet" href="./ReactiveX in Android_files/telerik-academy-dark.css">
+
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="./ReactiveX in Android_files/github.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'https://rawgit.com/TelerikAcademy/Common/master/revealjs-theme/css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script><link rel="stylesheet" type="text/css" href="./ReactiveX in Android_files/paper.css">
+    <!--[if lt IE 9]>
+    <script src="https://rawgit.com/TelerikAcademy/Common/master/revealjs-theme/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body style="transition: -webkit-transform 0.8s ease;" cz-shortcut-listen="true">
+    <div class="reveal slide center overview overview-animated" role="application" data-transition-speed="default" data-background-transition="fade">
+        <div id="slides-container" class="slides" style="width: 960px; height: 700px; zoom: 0.603; transform: translateX(-3090px) translateY(-3080px) translateZ(-2500px);"><section style="top: 0px; display: block; transform: translate3d(0px, 0px, 0px);" hidden="" aria-hidden="true" class="stack past" data-index-h="0"><section data-markdown="" id="title" class="slide-title" hasscriptwrapper="true" data-markdown-parsed="true" style="top: 0px; display: block; transform: translate3d(0px, 0px, 0px);" data-index-h="0" data-index-v="0"><h1 id="asynchronous-programming-in-android-with-reactivex">Asynchronous programming in Android with ReactiveX</h1>
+<h2 id="fuctional-reactive-async">Fuctional, Reactive, Async</h2>
+<div class="signature">
+    <p class="signature-course">Async Programming in Android with ReactiveX</p>
+    <p class="signature-initiative">Telerik Academy Plus</p>
+    <a href="http://academy.telerik.com/" class="signature-link">http://academy.telerik.com</a>
+</div>
+
+<p><img src="./ReactiveX in Android_files/Android_Reactive.jpeg" style="position: absolute;top: 210px;left: 0;height: 250px;border: 1px solid white;border-radius: 5px;"></p>
+</section></section><section style="top: 0px; display: block; transform: translate3d(1030px, 0px, 0px);" hidden="" aria-hidden="true" class="stack past" data-index-h="1"><section data-markdown="" data-markdown-parsed="true" style="top: 0px; display: block; transform: translate3d(0px, 0px, 0px);" data-index-h="1" data-index-v="0"><h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li>Recap: Creating Async requests in Android<ul>
+<li>HTTP request to fetch data</li>
+</ul>
+</li>
+<li>What is ReactiveX?</li>
+<li>Introducing RxAndroid<ul>
+<li>Observables</li>
+<li>Observers</li>
+<li>Schedules</li>
+</ul>
+</li>
+<li>Creating Async request with ReactiveX</li>
+</ul>
+</section></section><section style="top: 0px; display: block; transform: translate3d(2060px, 0px, 0px);" hidden="" aria-hidden="true" class="stack past" data-index-h="2"><section data-markdown="" hasscriptwrapper="true" style="font-size: 0.9em; top: 0px; display: block; transform: translate3d(0px, 0px, 0px);" data-markdown-parsed="true" data-index-h="2" data-index-v="0"><h1 id="who-am-i-">Who am I?</h1>
+<div style="vertical-align: top">
+  <div style="width: 35%; display:inline-block">
+    <img src="./ReactiveX in Android_files/doncho-minkov.jpeg" style="width: 100%">
+  </div>
+  <div style="width: 60%; display: inline-block">
+    <ul>
+      <li>
+        <strong>Doncho Minkov</strong>
+        <ul>
+          <li>
+            Pricipal Technical Trainer <br>@ Telerik Academy
+          </li>
+          <li>
+            10+ years in IT
+            <ul>
+              <li>
+                7 as a trainer in Telerik Academy
+              </li>
+              <li>
+                Front-end developer by heart
+                  <ul>
+                    <li>
+                      Software developer by need
+                      <br>
+                      <br>
+                    </li>
+                  </ul>
+              </li>
+            </ul>
+          </li>
+      
+    </ul>
+  </li></ul></div>
+</div>
+
+<ul>
+<li>Experience with all popular mobile platforms<ul>
+<li>Android, iOS, Windows</li>
+</ul>
+</li>
+<li>Fluent in .NET, Node.js, Angular, Java, C++</li>
+<li>Deep knowledge of Data Structures and Algorithms</li>
+</ul>
+</section></section><section style="top: 0px; display: block; transform: translate3d(3090px, 0px, 0px);" class="stack present" data-index-h="3"><section data-markdown="" class="slide-section past" data-markdown-parsed="true" hidden="" aria-hidden="true" style="top: 0px; display: block; transform: translate3d(0px, 0px, 0px);" data-index-h="3" data-index-v="0"><h1 id="running-async-code-in-android">Running Async Code in Android</h1>
+<h2 id="with-built-in-functionality">With built-in functionality</h2>
+</section><section data-markdown="" hasscriptwrapper="true" data-markdown-parsed="true" class="past" aria-hidden="true" hidden="" style="top: 0px; display: block; transform: translate3d(0px, 770px, 0px);" data-index-h="3" data-index-v="1"><h1 id="async-code-in-android">Async Code in Android</h1>
+<ul>
+<li>How can async code be executed in Android?<ul>
+<li>It's simple:<ol>
+<li>Inherit the <code>AsyncTask&lt;Params, Progress, Result&gt;</code> class</li>
+<li>Call the <code>execute(...params)</code> method</li>
+<li>The code in the <code>doInBackground(...)</code> method will be executed asynchronously</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</section><section data-markdown="" hasscriptwrapper="true" data-markdown-parsed="true" class="past" aria-hidden="true" hidden="" style="top: 0px; display: block; transform: translate3d(0px, 1540px, 0px);" data-index-h="3" data-index-v="2"><h1 id="async-code-in-android-br-example">Async Code in Android: <br>Example</h1>
+<ul>
+<li><em>Example: </em> Implementing an <code>AsyncTask&lt;&gt;</code></li>
+</ul>
+<pre><code class="lang-java">class MainActivity ... { 
+  class MyAsyncTask extends AsyncTask&lt;String, Void, String&gt; {
+    protected String doInBackground(String... params) {
+      // Asynchronous code
+    }
+  }
+
+  protected void onCreate(....) {
+    /* Activity setup code */
+    new MyAsyncTask()
+      .execute(/* Async code params */);
+  }
+}
+</code></pre>
+</section><section data-markdown="" class="slide-section past" data-markdown-parsed="true" aria-hidden="true" hidden="" style="top: 0px; display: block; transform: translate3d(0px, 2310px, 0px);" data-index-h="3" data-index-v="3"><h1 id="async-code-in-android">Async Code in Android</h1>
+<h2 id="demo">Demo</h2>
+</section><section data-markdown="" style="font-size: 0.9em; top: 0px; display: block; transform: translate3d(0px, 3080px, 0px);" data-markdown-parsed="true" class="present" data-index-h="3" data-index-v="4"><h1 id="asynctask-">AsyncTask&lt;&gt;</h1>
+<ul>
+<li><code>AsyncTask</code> is great, but...<ul>
+<li>Hard to reuse</li>
+<li>Untestable</li>
+<li>Kind of messy<ul>
+<li>Lots of nesting....</li>
+</ul>
+</li>
+<li>One more nesting, when we need to update the UI<ul>
+<li><code>runOnUiThread(new Runnable{ /* ... */ })</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>There are ways to solve this<ul>
+<li>Create generic <code>AsyncTasks</code>, that can be reuses and inject success/error callbacks</li>
+<li>Or use <strong>ReactiveX</strong></li>
+</ul>
+</li>
+</ul>
+</section></section><section style="top: 0px; display: block; transform: translate3d(4120px, 0px, 0px);" hidden="" aria-hidden="true" class="stack future" data-index-h="4"><section data-markdown="" class="slide-section" hasscriptwrapper="true" data-markdown-parsed="true" style="top: 0px; display: block; transform: translate3d(0px, 0px, 0px);" data-index-h="4" data-index-v="0"><h1 id="reactivex-element-style-margin-top-65px-" style="margin-top: 65px">ReactiveX <!-- --></h1>
+<h2 id="rxjava-and-rxandroid">RxJava and RxAndroid</h2>
+<p><img src="./ReactiveX in Android_files/reactivex.png" style="border:none;background: white;border-radius: 5px"></p>
+</section><section data-markdown="" class="slide-section future" hasscriptwrapper="true" data-markdown-parsed="true" aria-hidden="true" style="top: 0px; display: block; transform: translate3d(0px, 770px, 0px);" data-index-h="4" data-index-v="1"><h1 id="-div-style-vertical-align-middle-img-src-imgs-reactivex-png-style-border-none-background-none-box-shadow-0-height-70px-margin-0-span-reactivex-span-div-"><div style="vertical-align: middle;"><img src="./ReactiveX in Android_files/reactivex.png" style="border:none;background: none;box-shadow: 0; height: 70px; margin: 0"> <span>ReactiveX</span></div></h1>
+<h2 id="rxjava-and-rxandroid">RxJava and RxAndroid</h2>
+</section><section data-markdown="" style="font-size: 0.8em; top: 0px; display: block; transform: translate3d(0px, 1540px, 0px);" data-markdown-parsed="true" class="future" aria-hidden="true" data-index-h="4" data-index-v="2"><h1 id="what-is-reactivex-">What is ReactiveX?</h1>
+<ul>
+<li><a href="http://reactivex.io/">ReactiveX</a> is an easy way to handle async operations<ul>
+<li>Embraces paradigms from <strong>functional</strong> and <strong>reactive</strong> programming</li>
+<li><strong>Data</strong> and <strong>event</strong>-driven usage</li>
+<li>Provides very good async <strong>error handling</strong><ul>
+<li>Handles callback hell and stuff...</li>
+</ul>
+</li>
+<li>Async operations are <strong>chained much like functions on iteratables</strong> (arrays, lists)<ul>
+<li><code>map()</code>, <code>.filter()</code>, etc...</li>
+</ul>
+</li>
+<li>Easy way to execute your code in <strong>new threads</strong></li>
+<li><strong>Lazy execution</strong><ul>
+<li>Async operations are not executed if an <code>observe()</code> method is not called</li>
+</ul>
+</li>
+<li>Support for many <a href="http://reactivex.io/languages.html">languages and platforms</a><ul>
+<li>Some are Java, C#, JavaScript/TypeScript, Python, C++, Swift</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section data-markdown="" data-markdown-parsed="true" class="future" aria-hidden="true" style="top: 0px; display: block; transform: translate3d(0px, 2310px, 0px);" data-index-h="4" data-index-v="3"><h1 id="reactivex-components">ReactiveX components</h1>
+<ul>
+<li>ReactiveX is built of three core components<ul>
+<li><code>Observable</code><ul>
+<li>Built with Observer object</li>
+<li>Entry point for ~90% of the ReactiveX APIs</li>
+<li>Emits changes from the async operation</li>
+</ul>
+</li>
+<li><code>Observer</code><ul>
+<li>Observable pattern</li>
+<li>Observers on observables and react to changes</li>
+</ul>
+</li>
+<li><code>Schedulers</code><ul>
+<li>Control on which thread the async operation will be executed</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section data-markdown="" style="font-size: 0.9em; top: 0px; display: block; transform: translate3d(0px, 3080px, 0px);" hasscriptwrapper="true" data-markdown-parsed="true" class="future" aria-hidden="true" data-index-h="4" data-index-v="4"><h1 id="using-reactivex-in-an-br-android-application">Using ReactiveX in an<br>Android Application</h1>
+<ol>
+<li>Go to <a href="https://github.com/ReactiveX/RxAndroid">RxAndroid github page</a></li>
+<li>Copy the <strong>binaries</strong> code into your graddle</li>
+<li>Start using RxAndroid</li>
+</ol>
+<div style="text-align: center">
+  <div style="width: 49%; display: inline-block;margin: 0; font-size: 0.85em">
+    <strong>Creating the Observable</strong>
+    <pre><code class="lang-java hljs">Observable&lt;Integer&gt; getObservable() {
+  int index = 0;
+  return Observable.create(e -&gt; {
+    while(true) {
+      Thread.sleep(1000);
+      e.onNext(++index);
+    }
+  });
+}</code></pre>
+  </div>
+  <div style="width: 49%; display: inline-block;margin: 0; font-size: 0.85em">
+    <strong>Using the Observable</strong>
+    <pre><code class="lang-java hljs">getObservable()
+  .subscribeOn(Schedulers.io())
+  .observeOn(
+    AndroidSchedulers.mainThread())
+  .subscribe(value -&gt; {
+    /* use the values */
+  });
+
+
+</code></pre>
+  </div>
+</div></section><section data-markdown="" class="slide-section future" data-markdown-parsed="true" aria-hidden="true" style="top: 0px; display: block; transform: translate3d(0px, 3850px, 0px);" data-index-h="4" data-index-v="5"><h1 id="installing-reactivex-for-android">Installing ReactiveX for Android</h1>
+<h2 id="demo">Demo</h2>
+</section></section><section style="top: 0px; display: block; transform: translate3d(5150px, 0px, 0px);" hidden="" aria-hidden="true" class="stack future" data-index-h="5"><section data-markdown="" class="slide-section" data-markdown-parsed="true" style="top: 0px; display: block; transform: translate3d(0px, 0px, 0px);" data-index-h="5" data-index-v="0"><h1 id="fetching-data-from-a-web-server-with-reactivex">Fetching data from a web server with ReactiveX</h1>
+</section><section data-markdown="" hasscriptwrapper="true" data-markdown-parsed="true" class="future" aria-hidden="true" style="top: 0px; display: block; transform: translate3d(0px, 770px, 0px);" data-index-h="5" data-index-v="1"><h1 id="fetching-data-from-a-br-web-server-with-reactivex">Fetching data from a <br>web server with ReactiveX</h1>
+<ul>
+<li>We will use additional libraries:</li>
+</ul>
+<div style="text-align: center">
+  <div style="width: 49%; display: inline-block;margin: 0; font-size: 0.8em">
+    <strong><a href="http:">OkHttp</a></strong>
+    <p style="font-size:0.7em">for creating HTTP requests</p>
+    <pre><code class="lang-java hljs">Request req = 
+  new Request.Builder()
+    .get()
+    .url(url)
+    .build()
+
+  Response res = 
+    okHttpClient.newCall(req)
+      .execute();
+
+  String json = res.body()
+      .string();
+}</code></pre>
+  </div>
+  <div style="width: 49%; display: inline-block;margin: 0; font-size: 0.8em">
+    <strong><a href="http:">Gson</a></strong><p style="font-size:0.7em">for parsing the JSON to POJO</p>
+    <pre><code class="lang-java hljs">Gson gson = new Gson();
+
+// from JSON to POJO
+Book[] books = 
+  gson.fromJson(json, Book[].class);
+
+// from POJO to JSON
+String jsonBook = 
+  gson.toJson(bookObject);
+
+//from array to JSON
+String jsonBooksArray = 
+  gson.toJson(booksArray);
+</code></pre>
+  </div>
+</div></section><section data-markdown="" class="slide-section future" data-markdown-parsed="true" aria-hidden="true" style="top: 0px; display: block; transform: translate3d(0px, 1540px, 0px);" data-index-h="5" data-index-v="2"><h1 id="fetching-data-from-a-web-server-with-reactivex">Fetching data from a web server with ReactiveX</h1>
+<h2 id="demo">Demo</h2>
+</section></section><section style="top: 0px; display: block; transform: translate3d(6180px, 0px, 0px);" hidden="" aria-hidden="true" class="stack future" data-index-h="6"><section data-markdown="" id="questions" class="slide-section" data-markdown-parsed="true" style="top: 0px; display: block; transform: translate3d(0px, 0px, 0px);" data-index-h="6" data-index-v="0"><h1 id="questions">Questions</h1>
+<h2 id="async-programming-in-android-with-reactivex">Async programming in Android with ReactiveX</h2>
+</section></section><div class="backgrounds"><div class="slide-background stack past" style="display: block; transform: translate3d(0px, 0px, 0px);" data-loaded="true"><div class="slide-background slide-title past" style="display: block; transform: translate3d(0px, 0px, 0px);" data-loaded="true"></div></div><div class="slide-background stack past" data-loaded="true" style="display: block; transform: translate3d(1030px, 0px, 0px);"><div class="slide-background past" data-loaded="true" style="display: block; transform: translate3d(0px, 0px, 0px);"></div></div><div class="slide-background stack past" data-loaded="true" style="display: block; transform: translate3d(2060px, 0px, 0px);"><div class="slide-background past" data-loaded="true" style="display: block; transform: translate3d(0px, 0px, 0px);"></div></div><div class="slide-background stack present" data-loaded="true" style="display: block; transform: translate3d(3090px, 0px, 0px);"><div class="slide-background slide-section past" style="display: block; transform: translate3d(0px, 0px, 0px);" data-loaded="true"></div><div class="slide-background past" style="display: block; transform: translate3d(0px, 770px, 0px);" data-loaded="true"></div><div class="slide-background past" data-loaded="true" style="display: block; transform: translate3d(0px, 1540px, 0px);"></div><div class="slide-background slide-section past" data-loaded="true" style="display: block; transform: translate3d(0px, 2310px, 0px);"></div><div class="slide-background present" data-loaded="true" style="display: block; transform: translate3d(0px, 3080px, 0px);"></div></div><div class="slide-background stack future" data-loaded="true" style="display: block; transform: translate3d(4120px, 0px, 0px);"><div class="slide-background slide-section past" data-loaded="true" style="display: block; transform: translate3d(0px, 0px, 0px);"></div><div class="slide-background slide-section past" data-loaded="true" style="display: block; transform: translate3d(0px, 770px, 0px);"></div><div class="slide-background past" style="display: block; transform: translate3d(0px, 1540px, 0px);" data-loaded="true"></div><div class="slide-background past" style="display: block; transform: translate3d(0px, 2310px, 0px);" data-loaded="true"></div><div class="slide-background present" style="display: block; transform: translate3d(0px, 3080px, 0px);" data-loaded="true"></div><div class="slide-background slide-section future" style="display: block; transform: translate3d(0px, 3850px, 0px);" data-loaded="true"></div></div><div class="slide-background stack future" data-loaded="true" style="display: block; transform: translate3d(5150px, 0px, 0px);"><div class="slide-background slide-section past" data-loaded="true" style="display: block; transform: translate3d(0px, 0px, 0px);"></div><div class="slide-background past" style="display: block; transform: translate3d(0px, 770px, 0px);" data-loaded="true"></div><div class="slide-background slide-section past" style="display: block; transform: translate3d(0px, 1540px, 0px);" data-loaded="true"></div></div><div class="slide-background stack future" style="display: block; transform: translate3d(6180px, 0px, 0px);" data-loaded="true"><div class="slide-background slide-section past" style="display: block; transform: translate3d(0px, 0px, 0px);" data-loaded="true"></div></div></div></div>
+    <div class="progress" style="display: block;"><span style="width: 351.235px;"></span></div><aside class="controls" style="display: block;"><div class="navigate-left enabled"></div><div class="navigate-right enabled"></div><div class="navigate-up enabled"></div><div class="navigate-down"></div></aside><div class="slide-number">8 / 18</div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px 1px 1px 1px);">AsyncTask&lt;&gt;
+
+AsyncTask is great, but...
+Hard to reuse
+Untestable
+Kind of messy
+Lots of nesting....
+
+
+One more nesting, when we need to update the UI
+runOnUiThread(new Runnable{ /* ... */ })
+
+
+
+
+There are ways to solve this
+Create generic AsyncTasks, that can be reuses and inject success/error callbacks
+Or use ReactiveX
+
+
+
+</div></div>
+    <script src="./ReactiveX in Android_files/head.min.js"></script>
+    <script src="./ReactiveX in Android_files/reveal.js"></script>
+    <script src="./ReactiveX in Android_files/jquery.js"></script>
+    <script src="./ReactiveX in Android_files/jquery.js"></script>
+    <script src="./ReactiveX in Android_files/setup-func.js"></script>
+    <script src="./ReactiveX in Android_files/render.js"></script>
+    <script>
+        var protocol = window.location.protocol,
+            pathname = window.location.pathname.substring(0, window.location.pathname.indexOf('index.html')),
+            host = window.location.host,
+            readmeLocation = protocol + "//" + host + pathname;
+
+        if (readmeLocation[readmeLocation.length - 1] !== '/') {
+            readmeLocation += '/';
+        }
+        readmeLocation += 'README.md';
+
+        render(readmeLocation);
+    </script>
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function() {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					head.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					head.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function(msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			console.log('Live reload enabled.');
+		})();
+	}
+	// ]]>
+</script>
+
+
+<script type="text/javascript" src="./ReactiveX in Android_files/marked.js"></script><script type="text/javascript" src="./ReactiveX in Android_files/markdown.js"></script><script type="text/javascript" src="./ReactiveX in Android_files/highlight.js"></script><script type="text/javascript" src="./ReactiveX in Android_files/zoom.js"></script><script type="text/javascript" src="./ReactiveX in Android_files/notes.js"></script></body></html>
